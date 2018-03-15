@@ -12,7 +12,14 @@ const WORDS = [
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { words: WORDS };
+    this.state = { words: WORDS, txtEn: '', txtVn: '', shouldShowForm: false };
+  }
+
+  addWord() {
+    const { txtEn, txtVn, words } = this.state;
+    const newWord = { _id: Math.random(), en: txtEn, vn: txtVn, isMemorized: false };
+    const newArray = [newWord].concat(words);
+    this.setState({ words: newArray, txtEn: '', txtVn: '' });
   }
 
   removeWord(_id) {
@@ -53,12 +60,28 @@ class App extends Component {
   render() {
     return (
       <div className="App container">
+        <button className="btn btn-success">Add Word</button>
         <div className="form-group" style={{ width: '200px' }}>
-          <input placeholder="English" className="form-control" />
+          <input
+            placeholder="English"
+            className="form-control"
+            onChange={evt => this.setState({ txtEn: evt.target.value })}
+          />
           <br />
-          <input placeholder="Vietnamese" className="form-control" />
+          <input
+            placeholder="Vietnamese"
+            className="form-control"
+            onChange={evt => this.setState({ txtVn: evt.target.value })}  
+          />
           <br />
-          <button className="btn btn-success form-control">Add word</button>
+          <div class="btn-container">
+            <button className="btn btn-success" onClick={() => this.addWord()}>
+              Add word
+            </button>
+            <button className="btn btn-danger">
+              Cancel
+            </button>
+          </div>
         </div>
         { this.state.words.map(word => this.genList(word)) }
       </div>
