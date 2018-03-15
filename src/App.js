@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+const words = [
+  { _id: 'abc1', en: 'One', vn: 'Một', isMemorized: true },
+  { _id: 'abc2', en: 'Two', vn: 'Hai', isMemorized: false },
+  { _id: 'abc3', en: 'Three', vn: 'Ba', isMemorized: false },
+  { _id: 'abc4', en: 'Four', vn: 'Bốn', isMemorized: true },
+];
+
 class App extends Component {
   render() {
     return (
