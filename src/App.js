@@ -19,7 +19,7 @@ class App extends Component {
     const { txtEn, txtVn, words } = this.state;
     const newWord = { _id: Math.random(), en: txtEn, vn: txtVn, isMemorized: false };
     const newArray = [newWord].concat(words);
-    this.setState({ words: newArray, txtEn: '', txtVn: '' });
+    this.setState({ words: newArray, txtEn: '', txtVn: '', shouldShowForm: false });
   }
 
   removeWord(_id) {
@@ -34,6 +34,11 @@ class App extends Component {
       return { en, vn, _id, isMemorized: !isMemorized };
     });
     this.setState({ words: newWords });
+  }
+
+  toggleShouldShowForm() {
+    const { shouldShowForm } = this.state;
+    this.setState({ shouldShowForm: !shouldShowForm });
   }
 
   genList(word) {
@@ -57,32 +62,42 @@ class App extends Component {
     )
   }
 
+  getForm() {
+    if (!this.state.shouldShowForm) return (
+      <button className="btn btn-success" onClick={() => this.toggleShouldShowForm()}>
+        Add Word
+      </button>
+    );
+    return (
+      <div className="form-group" style={{ width: '200px' }}>
+        <input
+          placeholder="English"
+          className="form-control"
+          onChange={evt => this.setState({ txtEn: evt.target.value })}
+        />
+        <br />
+        <input
+          placeholder="Vietnamese"
+          className="form-control"
+          onChange={evt => this.setState({ txtVn: evt.target.value })}  
+        />
+        <br />
+        <div className="btn-container">
+          <button className="btn btn-success" onClick={() => this.addWord()}>
+            Add word
+          </button>
+          <button className="btn btn-danger" onClick={() => this.toggleShouldShowForm()}>
+            Cancel
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="App container">
-        <button className="btn btn-success">Add Word</button>
-        <div className="form-group" style={{ width: '200px' }}>
-          <input
-            placeholder="English"
-            className="form-control"
-            onChange={evt => this.setState({ txtEn: evt.target.value })}
-          />
-          <br />
-          <input
-            placeholder="Vietnamese"
-            className="form-control"
-            onChange={evt => this.setState({ txtVn: evt.target.value })}  
-          />
-          <br />
-          <div class="btn-container">
-            <button className="btn btn-success" onClick={() => this.addWord()}>
-              Add word
-            </button>
-            <button className="btn btn-danger">
-              Cancel
-            </button>
-          </div>
-        </div>
+        { this.getForm() }        
         { this.state.words.map(word => this.genList(word)) }
       </div>
     );
