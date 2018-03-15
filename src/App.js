@@ -13,6 +13,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { words: WORDS, txtEn: '', txtVn: '', shouldShowForm: false };
+    this.addWord = this.addWord.bind(this);
+    this.toggleShouldShowForm = this.toggleShouldShowForm.bind(this);
   }
 
   addWord() {
@@ -64,7 +66,7 @@ class App extends Component {
 
   getForm() {
     if (!this.state.shouldShowForm) return (
-      <button className="btn btn-success" onClick={() => this.toggleShouldShowForm()}>
+      <button className="btn btn-success" onClick={this.toggleShouldShowForm}>
         Add Word
       </button>
     );
@@ -83,10 +85,10 @@ class App extends Component {
         />
         <br />
         <div className="btn-container">
-          <button className="btn btn-success" onClick={() => this.addWord()}>
+          <button className="btn btn-success" onClick={this.addWord}>
             Add word
           </button>
-          <button className="btn btn-danger" onClick={() => this.toggleShouldShowForm()}>
+          <button className="btn btn-danger" onClick={this.toggleShouldShowForm}>
             Cancel
           </button>
         </div>
