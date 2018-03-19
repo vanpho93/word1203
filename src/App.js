@@ -18,6 +18,8 @@ class App extends Component {
     this.state = { words: WORDS, shouldShowForm: false };
     this.onAddWord = this.onAddWord.bind(this);
     this.onToggleShouldShowForm = this.onToggleShouldShowForm.bind(this);
+    this.onRemoveWord = this.onRemoveWord.bind(this);
+    this.onToggleMemorized = this.onToggleMemorized.bind(this);
   }
 
   onAddWord(txtEn, txtVn) {
@@ -27,12 +29,12 @@ class App extends Component {
     this.setState({ words: newArray, shouldShowForm: false });
   }
 
-  removeWord(_id) {
+  onRemoveWord(_id) {
     const newWords = this.state.words.filter(w => w._id !== _id);
     this.setState({ words: newWords });
   }
 
-  toggleMemorized(id) {
+  onToggleMemorized(id) {
     const newWords = this.state.words.map(word => {
       if (word._id !== id) return word;
       const { en, vn, _id, isMemorized } = word;
@@ -55,7 +57,14 @@ class App extends Component {
           onToggleShouldShowForm={this.onToggleShouldShowForm}  
           onAddWord={this.onAddWord}
         />
-        { this.state.words.map(word => <Word wordInfo={word} />) }
+        { this.state.words.map(word => (
+            <Word
+              wordInfo={word}
+              onRemoveWord={this.onRemoveWord}
+              onToggleMemorized={this.onToggleMemorized}
+            />
+          ))
+        }
       </div>
     );
     // return <Parent />
