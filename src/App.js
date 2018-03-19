@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import { Parent } from './Parent';
 import './App.css';
 
 const WORDS = [
@@ -97,12 +98,13 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="App container">
-        { this.getForm() }        
-        { this.state.words.map(word => this.genList(word)) }
-      </div>
-    );
+    // return (
+    //   <div className="App container">
+    //     { this.getForm() }        
+    //     { this.state.words.map(word => this.genList(word)) }
+    //   </div>
+    // );
+    return <Parent />
   }
 }
 
