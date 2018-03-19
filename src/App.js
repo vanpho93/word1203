@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import { Parent } from './Parent';
+// import { Parent } from './Parent';
+import { WordForm } from './WordForm';
 import './App.css';
 
 const WORDS = [
@@ -13,7 +14,7 @@ const WORDS = [
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { words: WORDS, txtEn: '', txtVn: '', shouldShowForm: false };
+    this.state = { words: WORDS, txtEn: '', txtVn: '', shouldShowForm: true };
     this.addWord = this.addWord.bind(this);
     this.toggleShouldShowForm = this.toggleShouldShowForm.bind(this);
   }
@@ -65,46 +66,15 @@ class App extends Component {
     )
   }
 
-  getForm() {
-    if (!this.state.shouldShowForm) return (
-      <button className="btn btn-success" onClick={this.toggleShouldShowForm}>
-        Add Word
-      </button>
-    );
+  render() {
     return (
-      <div className="form-group" style={{ width: '200px' }}>
-        <input
-          placeholder="English"
-          className="form-control"
-          onChange={evt => this.setState({ txtEn: evt.target.value })}
-        />
-        <br />
-        <input
-          placeholder="Vietnamese"
-          className="form-control"
-          onChange={evt => this.setState({ txtVn: evt.target.value })}  
-        />
-        <br />
-        <div className="btn-container">
-          <button className="btn btn-success" onClick={this.addWord}>
-            Add word
-          </button>
-          <button className="btn btn-danger" onClick={this.toggleShouldShowForm}>
-            Cancel
-          </button>
-        </div>
+      <div className="App container">
+        {/* { this.getForm() }*/}
+        <WordForm shouldShowForm={this.state.shouldShowForm} />
+        { this.state.words.map(word => this.genList(word)) }
       </div>
     );
-  }
-
-  render() {
-    // return (
-    //   <div className="App container">
-    //     { this.getForm() }        
-    //     { this.state.words.map(word => this.genList(word)) }
-    //   </div>
-    // );
-    return <Parent />
+    // return <Parent />
   }
 }
 
