@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-// import { Parent } from './Parent';
+import { Parent } from './Parent';
 import { WordForm } from './WordForm';
 import './App.css';
 
