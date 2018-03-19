@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import { Parent } from './Parent';
+// import { Parent } from './Parent';
 import { Word } from './Word';
 import { WordForm } from './WordForm';
+import { WordFilter } from './WordFilter';
+
 import './App.css';
 
 const WORDS = [
@@ -15,7 +16,7 @@ const WORDS = [
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { words: WORDS, shouldShowForm: false };
+    this.state = { words: WORDS, shouldShowForm: false, filterStatus: 'SHOW_ALL' };
     this.onAddWord = this.onAddWord.bind(this);
     this.onToggleShouldShowForm = this.onToggleShouldShowForm.bind(this);
     this.onRemoveWord = this.onRemoveWord.bind(this);
@@ -57,6 +58,7 @@ class App extends Component {
           onToggleShouldShowForm={this.onToggleShouldShowForm}  
           onAddWord={this.onAddWord}
         />
+        <WordFilter />
         { this.state.words.map(word => (
             <Word
               wordInfo={word}

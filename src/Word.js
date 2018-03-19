@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 export const Word = ({ wordInfo, onRemoveWord, onToggleMemorized }) => (
     <div className="word" key={wordInfo._id}>
