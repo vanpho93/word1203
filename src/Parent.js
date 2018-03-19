@@ -29,7 +29,11 @@ export class Parent extends Component {
             <div>
                 <h3>Count: {this.state.count}</h3>
                 <br />
-                <Child onIncrease={this.onIncrease} />
+                <Child
+                    onIncrease={this.onIncrease}
+                    onDescrease={this.onDescrease}
+                    onReset={this.onReset}
+                />
             </div>
         );
     }

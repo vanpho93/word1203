@@ -5,9 +5,9 @@ export const Child = (props) => (
         <button className="btn btn-success" onClick={props.onIncrease}>Increase</button>
         <br />
         <br />
-        <button className="btn btn-warning">Descrease</button>
+        <button className="btn btn-warning" onClick={props.onDescrease}>Descrease</button>
         <br />
         <br />
-        <button className="btn btn-danger">Reset</button>
+        <button className="btn btn-danger" onClick={props.onReset}>Reset</button>
     </div>
 );
