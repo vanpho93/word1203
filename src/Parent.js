@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Child } from './Child';
 
 export class Parent extends Component {
     constructor(props) {
@@ -28,14 +29,7 @@ export class Parent extends Component {
             <div>
                 <h3>Count: {this.state.count}</h3>
                 <br />
-                <br />
-                <button className="btn btn-success" onClick={this.increase}>Increase</button>
-                <br />
-                <br />
-                <button className="btn btn-warning" onClick={this.descrease}>Descrease</button>
-                <br />
-                <br />
-                <button className="btn btn-danger" onClick={this.reset}>Reset</button>
+                <Child />
             </div>
         );
     }
