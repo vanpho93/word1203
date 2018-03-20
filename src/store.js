@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 const defaultState = {
-    isShowForm: false,
+    shouldShowForm: false,
     filterStatus: 'SHOW_ALL',
     words: [
         { _id: 'abc1', en: 'One', vn: 'Một', isMemorized: true },
