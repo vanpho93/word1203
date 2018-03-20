@@ -16,7 +16,7 @@ const WORDS = [
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { words: WORDS, shouldShowForm: false, filterStatus: 'SHOW_ALL' };
+    this.state = { words: WORDS, shouldShowForm: false, filterStatus: 'SHOW_MEMORIZED' };
     this.onAddWord = this.onAddWord.bind(this);
     this.onToggleShouldShowForm = this.onToggleShouldShowForm.bind(this);
     this.onRemoveWord = this.onRemoveWord.bind(this);
@@ -61,6 +61,7 @@ class App extends Component {
         <WordFilter />
         { this.state.words.map(word => (
             <Word
+              filterStatus={this.state.filterStatus}
               wordInfo={word}
               onRemoveWord={this.onRemoveWord}
               onToggleMemorized={this.onToggleMemorized}
