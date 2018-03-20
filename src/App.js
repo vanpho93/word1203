@@ -16,11 +16,12 @@ const WORDS = [
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { words: WORDS, shouldShowForm: false, filterStatus: 'SHOW_MEMORIZED' };
+    this.state = { words: WORDS, shouldShowForm: false, filterStatus: 'SHOW_FORGOT' };
     this.onAddWord = this.onAddWord.bind(this);
     this.onToggleShouldShowForm = this.onToggleShouldShowForm.bind(this);
     this.onRemoveWord = this.onRemoveWord.bind(this);
     this.onToggleMemorized = this.onToggleMemorized.bind(this);
+    this.onChangeFilterStatus = this.onChangeFilterStatus.bind(this);
   }
 
   onAddWord(txtEn, txtVn) {
@@ -49,25 +50,42 @@ class App extends Component {
     this.setState({ shouldShowForm: !shouldShowForm });
   }
 
+  onChangeFilterStatus(filterStatus) {
+    this.setState({ filterStatus });
+  }
+
+  genListWords() {
+    const { filterStatus, words } = this.state;
+    const filteredWords = words.filter(w => {
+      if (filterStatus === 'SHOW_ALL') return true;
+      if (filterStatus === 'SHOW_FORGOT') return !w.isMemorized;
+      return w.isMemorized;
+    })
+    return filteredWords.map(word => (
+      <Word
+        key={word._id}
+        wordInfo={word}
+        onRemoveWord={this.onRemoveWord}
+        onToggleMemorized={this.onToggleMemorized}
+      />
+    ));
+  }
+
   render() {
+    const { shouldShowForm, filterStatus } = this.state;
     return (
       <div className="App container">
         {/* { this.getForm() }*/}
         <WordForm
-          shouldShowForm={this.state.shouldShowForm}
+          shouldShowForm={shouldShowForm}
           onToggleShouldShowForm={this.onToggleShouldShowForm}  
           onAddWord={this.onAddWord}
         />
-        <WordFilter />
-        { this.state.words.map(word => (
-            <Word
-              filterStatus={this.state.filterStatus}
-              wordInfo={word}
-              onRemoveWord={this.onRemoveWord}
-              onToggleMemorized={this.onToggleMemorized}
-            />
-          ))
-        }
+        <WordFilter
+          filterStatus={filterStatus}
+          onChangeFilterStatus={this.onChangeFilterStatus}  
+        />
+        { this.genListWords() }
       </div>
     );
     // return <Parent />
