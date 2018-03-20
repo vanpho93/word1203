@@ -27,8 +27,8 @@ class App extends Component {
   render() {
     return (
       <div className="App container">
-        <WordForm />
-        <WordFilter />
+        {/* <WordForm /> */}
+        {/* <WordFilter /> */}
         { this.genListWords() }
       </div>
     );
