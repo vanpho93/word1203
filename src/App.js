@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import { Word } from './Word';
 import { WordForm } from './WordForm';
 import { WordFilter } from './WordFilter';
+import { connect } from 'react-redux';
 
 import './App.css';
 
 class App extends Component {
   genListWords() {
-    const { filterStatus, words } = this.state;
+    const { filterStatus, words } = this.props;
     const filteredWords = words.filter(w => {
       if (filterStatus === 'SHOW_ALL') return true;
       if (filterStatus === 'SHOW_FORGOT') return !w.isMemorized;
@@ -28,7 +29,7 @@ class App extends Component {
     return (
       <div className="App container">
         {/* <WordForm /> */}
-        {/* <WordFilter /> */}
+        <WordFilter />
         { this.genListWords() }
       </div>
     );
@@ -36,4 +37,9 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStates = state => ({
+  words: state.words,
+  filterStatus: state.filterStatus
+});
+
+export default connect(mapStates)(App);

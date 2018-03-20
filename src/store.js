@@ -12,6 +12,11 @@ const defaultState = {
 };
 
 function reducer(state = defaultState, action) {
+    if (action.type = 'SET_FILTER_STATUS') return {
+        shouldShowForm: state.shouldShowForm,
+        words: state.words,
+        filterStatus: action.filterStatus
+    }
     return state;
 }
 
