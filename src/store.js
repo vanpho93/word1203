@@ -25,6 +25,12 @@ function reducer(state = defaultState, action) {
             shouldShowForm: false
         }
     }
+    if (action.type === 'REMOVE_WORD') {
+        return {
+            ...state,
+            words: state.words.filter(word => word._id !== action._id) 
+        }
+    }
     return state;
 }
 
