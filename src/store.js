@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 const defaultState = {
-    shouldShowForm: false,
+    shouldShowForm: true,
     filterStatus: 'SHOW_ALL',
     words: [
         { _id: 'abc1', en: 'One', vn: 'Một', isMemorized: true },
@@ -12,7 +12,7 @@ const defaultState = {
 };
 
 function reducer(state = defaultState, action) {
-    if (action.type = 'SET_FILTER_STATUS') return {
+    if (action.type === 'SET_FILTER_STATUS') return {
         shouldShowForm: state.shouldShowForm,
         words: state.words,
         filterStatus: action.filterStatus
