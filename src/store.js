@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 const defaultState = {
-    shouldShowForm: true,
+    shouldShowForm: false,
     filterStatus: 'SHOW_ALL',
     words: [
         { _id: 'abc1', en: 'One', vn: 'Một', isMemorized: true },
@@ -29,6 +29,15 @@ function reducer(state = defaultState, action) {
         return {
             ...state,
             words: state.words.filter(word => word._id !== action._id) 
+        }
+    }
+    if (action.type === 'TOGGLE_IS_MEMORIZED') {
+        return {
+            ...state,
+            words: state.words.map(word => {
+                if (word._id !== action._id) return word;
+                return { ...word, isMemorized: !word.isMemorized }
+            }) 
         }
     }
     return state;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const WordComponent = ({ wordInfo, dispatch, onToggleMemorized }) => (
+const WordComponent = ({ wordInfo, dispatch }) => (
     <div className="word" key={wordInfo._id}>
         <div className="word-container">
         <h3 className="text-success">{wordInfo.en}</h3>
@@ -10,7 +10,10 @@ const WordComponent = ({ wordInfo, dispatch, onToggleMemorized }) => (
         </h3>
         </div>
         <div className="btn-container">
-        <button className="btn btn-success" onClick={() => onToggleMemorized(wordInfo._id)}>
+        <button
+            className="btn btn-success"
+            onClick={() => dispatch({ type: 'TOGGLE_IS_MEMORIZED', _id: wordInfo._id })}
+        >
             { wordInfo.isMemorized ? 'Forgot' : 'Memorized' }
         </button>
         <button
