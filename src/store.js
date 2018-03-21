@@ -12,16 +12,17 @@ const defaultState = {
 };
 
 function reducer(state = defaultState, action) {
-    if (action.type === 'SET_FILTER_STATUS') return {
-        shouldShowForm: state.shouldShowForm,
-        words: state.words,
-        filterStatus: action.filterStatus
+    if (action.type === 'SET_FILTER_STATUS') {
+        return { ...state, filterStatus: action.filterStatus }
     }
     if (action.type === 'TOGGLE_SHOULD_SHOW_FORM') {
-        return  {
-            shouldShowForm: !state.shouldShowForm,
-            words: state.words,
-            filterStatus: state.filterStatus
+        return  {...state, shouldShowForm: !state.shouldShowForm }
+    }
+    if (action.type === 'ADD_WORD') {
+        return {
+            ...state,
+            words: state.words.concat(action.word),
+            shouldShowForm: false
         }
     }
     return state;
