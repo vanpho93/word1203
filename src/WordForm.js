@@ -15,9 +15,12 @@ class WordFormComponent extends Component {
     }
 
     render() {
-        const { shouldShowForm, onToggleShouldShowForm } = this.props;
+        const { shouldShowForm, dispatch } = this.props;
         if (!shouldShowForm) return (
-            <button className="btn btn-success" onClick={onToggleShouldShowForm}>
+            <button
+                className="btn btn-success"
+                onClick={() => dispatch({ type: 'TOGGLE_SHOULD_SHOW_FORM' })}
+            >
                 Add Word
             </button>
         );
@@ -41,7 +44,10 @@ class WordFormComponent extends Component {
                 <button className="btn btn-success" onClick={this.addWord}>
                     Add word
                 </button>
-                <button className="btn btn-danger" onClick={onToggleShouldShowForm}>
+                <button
+                    className="btn btn-danger"
+                    onClick={() => dispatch({ type: 'TOGGLE_SHOULD_SHOW_FORM' })}
+                >
                     Cancel
                 </button>
                 </div>

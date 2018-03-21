@@ -17,6 +17,13 @@ function reducer(state = defaultState, action) {
         words: state.words,
         filterStatus: action.filterStatus
     }
+    if (action.type === 'TOGGLE_SHOULD_SHOW_FORM') {
+        return  {
+            shouldShowForm: !state.shouldShowForm,
+            words: state.words,
+            filterStatus: state.filterStatus
+        }
+    }
     return state;
 }
 
