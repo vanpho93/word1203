@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Word } from './components/Word';
 import { WordForm } from './components/WordForm';
 import { WordFilter } from './components/WordFilter';
+import { Weather } from './components/Weather';
 import { connect } from 'react-redux';
 
 import './App.css';
@@ -26,14 +27,14 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="App container">
-        <WordForm />
-        <WordFilter />
-        { this.genListWords() }
-      </div>
-    );
-    // return <Parent />
+    // return (
+    //   <div className="App container">
+    //     <WordForm />
+    //     <WordFilter />
+    //     { this.genListWords() }
+    //   </div>
+    // );
+    return <Weather />
   }
 }
 
