@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // import { Parent } from './Parent';
-import { Word } from './Word';
-import { WordForm } from './WordForm';
-import { WordFilter } from './WordFilter';
+import { Word } from './components/Word';
+import { WordForm } from './components/WordForm';
+import { WordFilter } from './components/WordFilter';
 import { connect } from 'react-redux';
 
 import './App.css';
