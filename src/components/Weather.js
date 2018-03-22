@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { WeatherForm } from './WeatherForm';
+import { WeatherMessage } from './WeatherMessage';
 import axios from 'axios';
 
 export class Weather extends Component {
@@ -9,8 +11,9 @@ export class Weather extends Component {
     }
     render() {
         return (
-            <div>
-                Temp: 1
+            <div className="container">
+                <WeatherMessage />
+                <WeatherForm />
             </div>
         );
     }
