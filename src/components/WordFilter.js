@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import * as actionCreators from '../redux/actionCreators';
 
-const WordFilterComponent = ({ filterStatus, dispatch }) => (
+const WordFilterComponent = ({ filterStatus, setFilterStatus }) => (
     <div>
         <br />
         <select
             className="form-control"
             style={{ width: '200px' }}
             value={filterStatus}
-            onChange={evt => dispatch({ type: 'SET_FILTER_STATUS', filterStatus: evt.target.value })}
+            onChange={evt => setFilterStatus(evt.target.value)}
         >
             <option value="SHOW_ALL">SHOW ALL</option>
             <option value="SHOW_FORGOT">SHOW FORGOT</option>
@@ -18,4 +19,4 @@ const WordFilterComponent = ({ filterStatus, dispatch }) => (
 );
 
 const mapState = state => ({ filterStatus: state.filterStatus });
-export const WordFilter = connect(mapState)(WordFilterComponent);
+export const WordFilter = connect(mapState, actionCreators)(WordFilterComponent);
