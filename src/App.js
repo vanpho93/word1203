@@ -4,10 +4,15 @@ import { Word } from './components/Word';
 import { WordForm } from './components/WordForm';
 import { WordFilter } from './components/WordFilter';
 import { connect } from 'react-redux';
+import * as actionCreators from './redux/actionCreators';
 
 import './App.css';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getAllWords();
+  }
+
   genListWords() {
     const { filterStatus, words } = this.props;
     const filteredWords = words.filter(w => {
@@ -19,8 +24,6 @@ class App extends Component {
       <Word
         key={word._id}
         wordInfo={word}
-        onRemoveWord={this.onRemoveWord}
-        onToggleMemorized={this.onToggleMemorized}
       />
     ));
   }
@@ -41,4 +44,4 @@ const mapStates = state => ({
   filterStatus: state.filterStatus
 });
 
-export default connect(mapStates)(App);
+export default connect(mapStates, actionCreators)(App);

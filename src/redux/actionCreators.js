@@ -1,3 +1,15 @@
+import axios from 'axios';
+
+const URL = 'http://localhost:4000/word';
+
+export function getAllWords() {
+    return dispatch => {
+        axios.get(URL)
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
+    };
+}
+
 export function setFilterStatus(filterStatus) {
     return { type: 'SET_FILTER_STATUS', filterStatus };
 }
