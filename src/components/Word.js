@@ -13,7 +13,7 @@ const WordComponent = ({ wordInfo, removeWord, toggleIsMemorized }) => (
         <div className="btn-container">
         <button
             className="btn btn-success"
-            onClick={() => toggleIsMemorized(wordInfo._id)}
+            onClick={() => toggleIsMemorized(wordInfo._id, !wordInfo.isMemorized)}
         >
             { wordInfo.isMemorized ? 'Forgot' : 'Memorized' }
         </button>
